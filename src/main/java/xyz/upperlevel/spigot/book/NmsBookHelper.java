@@ -161,7 +161,7 @@ public final class NmsBookHelper {
      * @param offHand false if the book is in the right hand, true otherwise
      */
     public static void openBook(Player player, ItemStack book, boolean offHand) {
-        // nms(player).openBook(nms(player), nms(book), hand);
+         nms(player).openBook(nms(player), nms(book), hand);
         try {
             if (doubleHands) {
                 entityPlayerOpenBook.invoke(toNms(player), nmsCopy(book), hands[offHand ? 1 : 0]);
@@ -205,8 +205,8 @@ public final class NmsBookHelper {
             // CraftItemStack.asNMSCopy(itemStack);
             Object nmsItemStack = nmsCopy(item);
 
-            // net.minecraft.server.NBTTagCompound compound = new NBTTagCompound();
-            // compound = nmsItemStack.save(compound);
+             net.minecraft.server.NBTTagCompound compound = new NBTTagCompound();
+             compound = nmsItemStack.save(compound);
             Object emptyTag = nbtTagCompoundConstructor.newInstance();
             Object json = nmsItemStackSave.invoke(nmsItemStack, emptyTag);
             return json.toString();
